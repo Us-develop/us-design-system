@@ -68,6 +68,24 @@ than snapping to one or the other.
 | Gutter | 16 | 20 |
 | Max column text width | 320 | 330 |
 
+**Do not use `--margins-maxcols` as paragraph `max-width`.** In Figma this value
+is a layout helper (right-margin / column boundary for designing non-full-width
+content), not the readable width for body copy. At ~330px it is too narrow for
+normal paragraphs.
+
+For body text and intros, use a prose width derived from the content area until a
+dedicated token exists in Figma (e.g. `--content-prose-max-width`):
+
+```css
+.prose-width {
+  max-width: min(100%, calc(var(--page-content-width) * 0.62));
+}
+```
+
+That yields ~732px at the 1180px content max — readable without spanning the full
+container. Adjust the ratio in Figma if designers want a different measure; then
+regenerate tokens rather than hand-editing.
+
 Below 360 and above 1440 the values clamp. 1440 is the design canvas, so the
 layout stops growing there and centres.
 

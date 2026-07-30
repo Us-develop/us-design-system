@@ -290,6 +290,9 @@
   --margins-row_indent-medium: clamp(48px, 42.667px + 1.482vw, 64px);
   --margins-row_indent-large-default: clamp(64px, 53.333px + 2.963vw, 96px);
   --margins-row_indent-xlarge: clamp(112px, 106.667px + 1.482vw, 128px);
+  /* Layout helper: column boundary / right-margin guide in Figma.
+     NOT for paragraph max-width — use .prose-width or a future
+     --content-prose-max-width token (see us-design-system.md §6). */
   --margins-maxcols: clamp(320px, 316.667px + 0.926vw, 330px);
   --grid-grid-width: clamp(40px, 26.667px + 3.704vw, 80px);
   --grid-grid-gutter: clamp(16px, 14.667px + 0.37vw, 20px);
