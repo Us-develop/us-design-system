@@ -48,6 +48,14 @@ them from https://github.com/Us-develop/us-design-system before writing UI code.
 4. **One profile per deliverable.** Web for digital products. Presentation (Archivo)
    only when explicitly requested — never mixed in the same deliverable.
 
+5. **UI icons:** Material Symbols Outlined at weight 300 only. Use the documented
+   icon tokens and sizes. No emoji for status or actions. Font Awesome Brands for
+   social marks only.
+
+6. **Feedback:** Success, error, warning, and info UI must use `--color-system-*`
+   tokens and documented feedback patterns. Do not invent alert colours or emoji
+   status indicators.
+
 ## When something is not defined — STOP
 
 If you need a value, component pattern, or style that is **not** in the tokens or
@@ -64,4 +72,4 @@ Undefined = blocker. Improvisation is off-brand and not allowed.
 
 Verify: Web profile fonts loaded; no hard-coded colours/fonts/spacing outside
 tokens; `data-us-mode` / `data-us-theme` used where needed; buttons are Shark not
-purple.
+purple; UI icons are Material Symbols (no emoji); feedback uses `--color-system-*`.

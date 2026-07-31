@@ -568,6 +568,51 @@ One shadow style exists: Dropshadow/Soft — blur 20, no offset, no spread, blac
 at 8%. There is no elevation scale. If something needs to lift off the page, it
 uses that shadow or none at all.
 
+### Icons in code
+
+- **UI icons:** Material Symbols **Outlined**, weight **300** only. Never Material Icons (legacy).
+- **Load:** Google Fonts URL from §3, or self-host via `material-symbols` npm package.
+- **Never mix** Rounded or Sharp with Outlined in one product.
+- **Font Awesome 6 Brands:** social/brand marks only — never UI icons.
+
+Implement a reusable `Icon` component (or equivalent) that sets all four axes together:
+
+| Axis | Us value |
+|------|----------|
+| `wght` | 300 (`--typography-icon-weight`) |
+| `FILL` | 0 default, 1 for active/selected |
+| `GRAD` | 0 default; -50 on dark backgrounds (`--typography-icon-grade`) |
+| `opsz` | match rendered size (min 20 for optical correction) |
+
+Use tokenized sizes only: `--typography-font-size-icons-12|16|24|32`.
+Use icon colours from `--icon-icon-10` / `--icon-icon-50` on light UI, or system/semantic tokens where appropriate.
+
+**Do not use emoji** (✅❌⚠️ etc.) for pass/fail, actions, or status in product UI when a Material Symbol exists (e.g. `check_circle`, `cancel`, `warning`, `info`, `error`).
+
+### Feedback messages
+
+Use system colours **for feedback only** — never as brand accents:
+
+| Type | Primitive token | Typical icon |
+|------|-----------------|--------------|
+| Success | `--color-system-success` | `check_circle` |
+| Error | `--color-system-error` | `error` |
+| Warning | `--color-system-warning` | `warning` |
+| Info | `--color-system-info` | `info` |
+
+Until Figma exports dedicated Feedback Message semantic tokens (background, border, label per type), use this interim pattern:
+
+- **Background:** `--color-neutrals-10` or `--page-page-background`
+- **Accent:** system colour on icon + left border (4px / `--spacing-0-25-rem`)
+- **Text:** `--content-body` / `--content-heading`
+- **Border:** `--borders-border-01`
+- **Radius:** `--radius-radius-m`
+- **Role:** `role="alert"` for errors; `role="status"` for success/info/warning
+
+Do not invent feedback background tints or hex values. When the Figma Feedback Messages component is tokenised, regenerate `us-tokens.css` and replace the interim pattern.
+
+**Badges** for compact pass/fail may use system colour backgrounds with white label (`--color-neutrals-00`) and a matching Material Symbol at 16px.
+
 ---
 
 ## 8. Using this in Cursor
@@ -596,6 +641,9 @@ alwaysApply: true
 
 Import `us-tokens.css` once at the app root. Cursor then has both the values and
 the rules on every request, without anyone pasting anything.
+
+Reference implementations for `Icon`, `FeedbackMessage`, and `PassFailStatus` live
+in consuming apps (e.g. wcag-contrast-matrix demo). Copy patterns, not hex values.
 
 For Tailwind projects, map the tokens rather than duplicating them:
 
@@ -783,3 +831,8 @@ Honest list of what this document does not yet cover.
    (`--content-prose-max-width`) so projects do not rely on the interim CSS
    pattern `min(100%, calc(var(--page-content-width) * 0.62))` long term. Until
    then, document and use `.prose-width` in consuming apps (see §6).
+7. **Feedback Messages — semantic tokens missing.** Figma has a Feedback Messages
+   component page, but `us-tokens.css` only exports primitive `--color-system-*`
+   colours. Background, border, and label tokens per feedback type need to be
+   added in Figma and regenerated before projects can drop the interim neutral-surface
+   + system-accent pattern (see §7).

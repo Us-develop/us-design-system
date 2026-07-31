@@ -38,6 +38,12 @@ user explicitly asks for a presentation):
 Also load Public Sans, Material Symbols Outlined, and Font Awesome 6 Brands as
 your stack requires — see `us-design-system.md` §3.
 
+Checklist:
+
+- [ ] Material Symbols Outlined loaded (see `us-design-system.md` §3)
+- [ ] Reusable Icon component uses `--typography-font-icons` and icon axis tokens
+- [ ] Feedback UI uses `--color-system-*` only (no emoji, no custom alert hex)
+
 **Presentation / deck HTML** — **only when explicitly requested.** Add
 `data-us-fonts="presentation"` on `<html>` and load Google Fonts (Archivo stack)
 per `us-design-system.md` §3. Do not use this profile for normal web apps.

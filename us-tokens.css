@@ -52,6 +52,8 @@
   --color-neutrals-90: #2E2E2E;
   --color-neutrals-100: #000000;
 
+  /* System colours — feedback states ONLY (see us-design-system.md §5, §7).
+     Do not use for brand UI, buttons, or decorative accents. */
   --color-system-error: #DF2020;
   --color-system-info: #3C81E7;
   --color-system-success: #41BD73;
@@ -178,7 +180,7 @@
   --typography-font-weight-banner-title: 700;         /* Bold */
 
   /* =========================================================
-     ICONS — Material Symbols
+     ICONS — Material Symbols (see us-design-system.md §3, §7)
 
      "Material Icons" (legacy) is a static font with no axes.
      Weight 300 requires "Material Symbols", the variable
